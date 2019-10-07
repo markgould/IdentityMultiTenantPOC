@@ -214,3 +214,4 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/src/IdentityServer/identityserver4_log.txt

@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
+using IdentityServer.Infrastructure;
 using IdentityServer4;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
@@ -74,7 +75,9 @@ namespace IdentityServer
                     // this enables automatic token cleanup. this is optional.
                     options.EnableTokenCleanup = true;
                 })
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddProfileService<MultiTenantProfileService<ApplicationUser>>()
+                .AddAuthorizeInteractionResponseGenerator<MultiTenantAuthorizeInteractionResponseGenerator>();
 
             if (Environment.IsDevelopment())
             {
