@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -27,9 +28,17 @@ namespace MvcClient.Pages
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            var content = await client.GetStringAsync($"https://localhost:44325/demo?tenantId={Data.TenantId}");
+            client.DefaultRequestHeaders.Add("Tenant", Data.TenantId);
 
-            Data.Results = JToken.Parse(content).ToString();
+            try
+            {
+                var content = await client.GetStringAsync($"https://localhost:44325/demo");
+                Data.Results = JToken.Parse(content).ToString();
+            }
+            catch (Exception e)
+            {
+                Data.Results = e.Message;
+            }
         }
 
         public class Command
