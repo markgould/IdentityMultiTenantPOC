@@ -4,6 +4,21 @@
     ViewData["Title"] = "ApiDemo";
 }
 
-<h2>Results from API Call</h2>
+<div class="row">
+    <div class="col-md-10">
+        <form method="post">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Data.TenantId, new { @class = "col-md-6" })
+                @Html.TextBoxFor(m => m.Data.TenantId, new { @class = "col-md-6" })
+            </div>
+            <input type="submit" value="Call Api" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
 
-<p>@Model.Data</p>
+<h2>Results from API Call</h2>
+<div class="row">
+    <div class="col-md-10">
+        @Html.TextAreaFor(m => m.Data.Results, new { @class = "col-md-10", @style ="min-height: 500px" })
+    </div>
+</div>

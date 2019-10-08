@@ -76,8 +76,7 @@ namespace IdentityServer
                     options.EnableTokenCleanup = true;
                 })
                 .AddAspNetIdentity<ApplicationUser>()
-                .AddProfileService<MultiTenantProfileService<ApplicationUser>>()
-                .AddAuthorizeInteractionResponseGenerator<MultiTenantAuthorizeInteractionResponseGenerator>();
+                .AddProfileService<MultiTenantProfileService>();
 
             if (Environment.IsDevelopment())
             {

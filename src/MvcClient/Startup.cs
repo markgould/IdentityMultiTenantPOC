@@ -46,7 +46,7 @@ namespace MvcClient
 
                     options.Scope.Add("api1");
 
-                    options.ClaimActions.MapJsonKey("tenantId", "tenantId");
+                    options.ClaimActions.MapJsonKey("authorizedTenants", "authorizedTenants");
                 });
         }
 
